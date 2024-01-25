@@ -16,9 +16,9 @@ namespace TimeshareManagement.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly IAuthRepository _authService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthRepository authService)
         {
             _authService = authService;
         }
@@ -56,9 +56,7 @@ namespace TimeshareManagement.API.Controllers
             }
             return Unauthorized(login);
         }
-
         
-
         [HttpPost]
         [Route("make-admin")]
         public async Task<IActionResult> MakeAdmin([FromBody] UpdatePermissionDTO updatePermissionDTO)
@@ -71,7 +69,6 @@ namespace TimeshareManagement.API.Controllers
             }
             return BadRequest(makeAdmin);
         }
-
 
         [HttpPost]
         [Route("make-owner")]
