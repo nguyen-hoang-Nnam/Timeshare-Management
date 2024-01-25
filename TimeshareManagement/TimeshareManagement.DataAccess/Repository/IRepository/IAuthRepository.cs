@@ -7,7 +7,7 @@ using TimeshareManagement.Models.Models.DTO;
 
 namespace TimeshareManagement.DataAccess.Repository.IRepository
 {
-    public interface IAuthService
+    public interface IAuthRepository
     {
         Task<ResponseDTO> SeedRolesAsync();
         Task<ResponseDTO> RegisterAsync(RegisterDTO registerDTO);

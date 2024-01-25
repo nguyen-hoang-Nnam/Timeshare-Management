@@ -48,6 +48,7 @@ namespace TimeshareManagement.API.Controllers
         [HttpGet]
         [Route("GetStaffRole")]
         [Authorize(Roles = StaticUserRoles.STAFF)]
+        /*[Authorize(Roles = $"{StaticUserRoles.STAFF},{StaticUserRoles.ADMIN}")]*/
         public IActionResult GetStaffRole()
         {
             return Ok(Summaries);

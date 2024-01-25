@@ -15,13 +15,13 @@ using TimeshareManagement.Models.Role;
 
 namespace TimeshareManagement.DataAccess.Repository
 {
-    public class AuthService : IAuthService
+    public class AuthRepository : IAuthRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AuthRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
