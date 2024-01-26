@@ -9,6 +9,7 @@ using TimeshareManagement.DataAccess.Data;
 using TimeshareManagement.DataAccess.Repository;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
+using TimeshareManagement.Models.Models.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +71,7 @@ builder.Services
 
 // Inject app Dependency Injection
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddTransient<ResponseDTO>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

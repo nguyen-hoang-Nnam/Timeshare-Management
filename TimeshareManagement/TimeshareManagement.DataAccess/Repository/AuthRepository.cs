@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using TimeshareManagement.DataAccess.Data;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
 using TimeshareManagement.Models.Models.DTO;
@@ -17,15 +20,44 @@ namespace TimeshareManagement.DataAccess.Repository
 {
     public class AuthRepository : IAuthRepository
     {
+        private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public AuthRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AuthRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, ApplicationDbContext db)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _db = db;
+        }
+
+        public async Task<bool> AssignRole(string userName, string roleName)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
+            if (user != null)
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                {
+                    _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+                }
+                await _userManager.AddToRoleAsync(user, roleName);
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<ResponseDTO> ChangeUserRole(string UserId, string NewRole)
+        {
+            var obj = _db.UserRoles.Find(UserId, NewRole);
+            if(obj != null && !obj.UserId.Equals(UserId))
+            {
+                obj.RoleId = NewRole;
+                _db.UserRoles.Update(obj);
+                _db.SaveChanges();
+            }
+            return new ResponseDTO() { IsSucceed = true, Message = "Changed completed" };
         }
 
         public async Task<ResponseDTO> LoginAsync(LoginDTO loginDTO)
@@ -73,6 +105,16 @@ namespace TimeshareManagement.DataAccess.Repository
                 return new ResponseDTO() { IsSucceed = true, Message = "Invalid Username" };
             }
 
+            var oldRole = await _userManager.GetRolesAsync(user);
+            if(oldRole.Any())
+            {
+                var removeRole = await _userManager.RemoveFromRolesAsync(user, oldRole);
+                if (!removeRole.Succeeded)
+                {
+                    return new ResponseDTO { IsSucceed = false, Message = "Error" };
+                }
+            }
+
             await _userManager.AddToRoleAsync(user, StaticUserRoles.ADMIN);
 
             return new ResponseDTO() { IsSucceed = true, Message = "User is Admin" };
@@ -85,6 +127,15 @@ namespace TimeshareManagement.DataAccess.Repository
             if (user is null)
             {
                 return new ResponseDTO() { IsSucceed = true, Message = "Invalid Username" };
+            }
+            var oldRole = await _userManager.GetRolesAsync(user);
+            if (oldRole.Any())
+            {
+                var removeRole = await _userManager.RemoveFromRolesAsync(user, oldRole);
+                if (!removeRole.Succeeded)
+                {
+                    return new ResponseDTO { IsSucceed = false, Message = "Error" };
+                }
             }
 
             await _userManager.AddToRoleAsync(user, StaticUserRoles.OWNER);
@@ -99,6 +150,15 @@ namespace TimeshareManagement.DataAccess.Repository
             if (user is null)
             {
                 return new ResponseDTO() { IsSucceed = true, Message = "Invalid Username" };
+            }
+            var oldRole = await _userManager.GetRolesAsync(user);
+            if (oldRole.Any())
+            {
+                var removeRole = await _userManager.RemoveFromRolesAsync(user, oldRole);
+                if (!removeRole.Succeeded)
+                {
+                    return new ResponseDTO { IsSucceed = false, Message = "Error" };
+                }
             }
 
             await _userManager.AddToRoleAsync(user, StaticUserRoles.STAFF);
@@ -136,7 +196,6 @@ namespace TimeshareManagement.DataAccess.Repository
                 return new ResponseDTO() { IsSucceed = true, Message = errorString };
             }
             await _userManager.AddToRoleAsync(newUser, StaticUserRoles.USER);
-
             return new ResponseDTO() { IsSucceed = true, Message = "User created successfully" };
         }
 

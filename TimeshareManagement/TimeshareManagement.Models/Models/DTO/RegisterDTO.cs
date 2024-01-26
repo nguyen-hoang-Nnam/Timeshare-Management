@@ -23,5 +23,7 @@ namespace TimeshareManagement.Models.Models.DTO
 
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+
+        /*public string? Role { get; set; }*/
     }
 }
