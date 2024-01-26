@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,18 +18,24 @@ namespace TimeshareManagement.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRepository _authService;
+        private readonly IAuthRepository _authRepository;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _configuration;
+        private readonly ResponseDTO _responseDTO;
 
-        public AuthController(IAuthRepository authService)
+        public AuthController(IAuthRepository authRepository, RoleManager<IdentityRole> roleManager, IConfiguration configuration, ResponseDTO responseDTO)
         {
-            _authService = authService;
+            _authRepository = authRepository;
+            _roleManager = roleManager;
+            _configuration = configuration;
+            _responseDTO = responseDTO;
         }
 
         [HttpPost]
         [Route("send-roles")]
         public async Task<IActionResult> SeedRoles()
         {
-            var seedRoles = await _authService.SeedRolesAsync();
+            var seedRoles = await _authRepository.SeedRolesAsync();
             return Ok(seedRoles);
         }
 
@@ -35,7 +43,7 @@ namespace TimeshareManagement.API.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO registerDTO)
         {
-            var register = await _authService.RegisterAsync(registerDTO);
+            var register = await _authRepository.RegisterAsync(registerDTO);
 
             if (register.IsSucceed)
             {
@@ -48,7 +56,7 @@ namespace TimeshareManagement.API.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            var login = await _authService.LoginAsync(loginDTO);
+            var login = await _authRepository.LoginAsync(loginDTO);
 
             if (login.IsSucceed)
             {
@@ -61,7 +69,7 @@ namespace TimeshareManagement.API.Controllers
         [Route("make-admin")]
         public async Task<IActionResult> MakeAdmin([FromBody] UpdatePermissionDTO updatePermissionDTO)
         {
-            var makeAdmin = await _authService.MakeAdminAsync(updatePermissionDTO);
+            var makeAdmin = await _authRepository.MakeAdminAsync(updatePermissionDTO);
 
             if(makeAdmin.IsSucceed)
             {
@@ -74,7 +82,7 @@ namespace TimeshareManagement.API.Controllers
         [Route("make-owner")]
         public async Task<IActionResult> MakeOwner([FromBody] UpdatePermissionDTO updatePermissionDTO)
         {
-            var makeOwner = await _authService.MakeOwnerAsync(updatePermissionDTO);
+            var makeOwner = await _authRepository.MakeOwnerAsync(updatePermissionDTO);
 
             if (makeOwner.IsSucceed)
             {
@@ -87,7 +95,7 @@ namespace TimeshareManagement.API.Controllers
         [Route("make-staff")]
         public async Task<IActionResult> MakeStaff([FromBody] UpdatePermissionDTO updatePermissionDTO)
         {
-            var makeStaff = await _authService.MakeStaffAsync(updatePermissionDTO);
+            var makeStaff = await _authRepository.MakeStaffAsync(updatePermissionDTO);
 
             if (makeStaff.IsSucceed)
             {
