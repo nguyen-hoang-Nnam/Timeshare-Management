@@ -1634,6 +1634,25 @@
             "rid": "win"
           }
         }
+      },
+      "TimeshareManagement.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.10",
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
+          "Microsoft.EntityFrameworkCore": "7.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10"
+        },
+        "compile": {
+          "bin/placeholder/TimeshareManagement.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TimeshareManagement.Models.dll": {}
+        }
       }
     }
   },
@@ -4391,6 +4410,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "TimeshareManagement.Models/1.0.0": {
+      "type": "project",
+      "path": "../TimeshareManagement.Models/TimeshareManagement.Models.csproj",
+      "msbuildProject": "../TimeshareManagement.Models/TimeshareManagement.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4403,7 +4427,8 @@
       "Microsoft.EntityFrameworkCore >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.10",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.10"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
+      "TimeshareManagement.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4432,7 +4457,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj": {
+              "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

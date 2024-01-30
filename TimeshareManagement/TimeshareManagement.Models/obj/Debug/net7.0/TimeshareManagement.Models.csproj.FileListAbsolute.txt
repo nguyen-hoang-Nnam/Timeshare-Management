@@ -19,14 +19,11 @@ D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\bin\Debug\
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\bin\Debug\net7.0\TimeshareManagement.Models.runtimeconfig.json
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\bin\Debug\net7.0\TimeshareManagement.Models.dll
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\bin\Debug\net7.0\TimeshareManagement.Models.pdb
-D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\bin\Debug\net7.0\TimeshareManagement.Utility.dll
-D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\bin\Debug\net7.0\TimeshareManagement.Utility.pdb
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.csproj.AssemblyReference.cache
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.AssemblyInfoInputs.cache
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.AssemblyInfo.cs
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.csproj.CoreCompileInputs.cache
-D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.csproj.CopyComplete
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.dll
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\refint\TimeshareManagement.Models.dll
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Models\obj\Debug\net7.0\TimeshareManagement.Models.pdb

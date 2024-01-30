@@ -24,4 +24,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TimeshareManagement.Models\TimeshareManagement.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -101,22 +101,19 @@ namespace TimeshareManagement.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("UserId");
 
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
@@ -228,6 +225,79 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TimeshareManagement.Models.Models.Place", b =>
+                {
+                    b.Property<int>("placeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("placeId"));
+
+                    b.Property<string>("placeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("placeId");
+
+                    b.ToTable("Places", (string)null);
+                });
+
+            modelBuilder.Entity("TimeshareManagement.Models.Models.Timeshare", b =>
+                {
+                    b.Property<int>("timeshareId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("timeshareId"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Checkin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Checkout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("placeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("timeshareName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("timeshareStatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("timeshareId");
+
+                    b.HasIndex("placeId");
+
+                    b.HasIndex("timeshareStatusId");
+
+                    b.ToTable("Timeshares", (string)null);
+                });
+
+            modelBuilder.Entity("TimeshareManagement.Models.Models.TimeshareStatus", b =>
+                {
+                    b.Property<int>("timeshareStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("timeshareStatusId"));
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("timeshareStatusId");
+
+                    b.ToTable("TimesharesStatus", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -277,6 +347,21 @@ namespace TimeshareManagement.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TimeshareManagement.Models.Models.Timeshare", b =>
+                {
+                    b.HasOne("TimeshareManagement.Models.Models.Place", "Place")
+                        .WithMany()
+                        .HasForeignKey("placeId");
+
+                    b.HasOne("TimeshareManagement.Models.Models.TimeshareStatus", "TimeshareStatus")
+                        .WithMany()
+                        .HasForeignKey("timeshareStatusId");
+
+                    b.Navigation("Place");
+
+                    b.Navigation("TimeshareStatus");
                 });
 #pragma warning restore 612, 618
         }

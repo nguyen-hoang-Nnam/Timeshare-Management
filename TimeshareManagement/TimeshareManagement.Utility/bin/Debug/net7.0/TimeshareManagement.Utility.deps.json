@@ -16,7 +16,8 @@
           "Microsoft.EntityFrameworkCore": "7.0.10",
           "Microsoft.EntityFrameworkCore.Design": "7.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.10"
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.10",
+          "TimeshareManagement.Models": "1.0.0"
         },
         "runtime": {
           "TimeshareManagement.Utility.dll": {}
@@ -852,6 +853,20 @@
             "fileVersion": "5.0.20.51904"
           }
         }
+      },
+      "TimeshareManagement.Models/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.10",
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
+          "Microsoft.EntityFrameworkCore": "7.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10"
+        },
+        "runtime": {
+          "TimeshareManagement.Models.dll": {}
+        }
       }
     }
   },
@@ -1532,6 +1547,11 @@
       "sha512": "sha512-c1ho9WU9ZxMZawML+ssPKZfdnrg/OjR3pe0m9v8230z3acqphwvPJqzAkH54xRYm5ntZHGG1EPP3sux9H3qSPg==",
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
+    },
+    "TimeshareManagement.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
