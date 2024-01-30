@@ -1772,8 +1772,7 @@
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
           "Microsoft.EntityFrameworkCore": "7.0.10",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
-          "TimeshareManagement.Utility": "1.0.0"
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10"
         },
         "compile": {
           "bin/placeholder/TimeshareManagement.Models.dll": {}
@@ -1792,7 +1791,8 @@
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
           "Microsoft.EntityFrameworkCore": "7.0.10",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10"
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
+          "TimeshareManagement.Models": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TimeshareManagement.Utility.dll": {}

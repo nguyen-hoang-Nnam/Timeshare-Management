@@ -249,11 +249,7 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {
-              "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj": {
-                "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -350,7 +346,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj": {
+                "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

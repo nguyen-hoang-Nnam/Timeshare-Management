@@ -24,8 +24,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TimeshareManagement.Utility\TimeshareManagement.Utility.csproj" />
-  </ItemGroup>
-
 </Project>
