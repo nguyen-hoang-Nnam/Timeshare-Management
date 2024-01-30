@@ -26,3 +26,6 @@ D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\obj\Debug
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\obj\Debug\net7.0\TimeshareManagement.Utility.pdb
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\obj\Debug\net7.0\TimeshareManagement.Utility.genruntimeconfig.cache
 D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\obj\Debug\net7.0\ref\TimeshareManagement.Utility.dll
+D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\bin\Debug\net7.0\TimeshareManagement.Models.dll
+D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\bin\Debug\net7.0\TimeshareManagement.Models.pdb
+D:\TimeshareManagement\TimeshareManagement\TimeshareManagement.Utility\obj\Debug\net7.0\TimeshareManagement.Utility.csproj.CopyComplete

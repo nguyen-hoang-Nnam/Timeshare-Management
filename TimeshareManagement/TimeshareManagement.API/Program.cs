@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,7 @@ using TimeshareManagement.DataAccess.Repository;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
 using TimeshareManagement.Models.Models.DTO;
+using TimeshareManagement.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +74,12 @@ builder.Services
 // Inject app Dependency Injection
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddTransient<ResponseDTO>();
+builder.Services.AddScoped<ITimeshareRepository, TimeshareRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

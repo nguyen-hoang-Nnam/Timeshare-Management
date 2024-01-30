@@ -33,32 +33,7 @@ namespace TimeshareManagement.DataAccess.Repository
             _db = db;
         }
 
-        public async Task<bool> AssignRole(string userName, string roleName)
-        {
-            var user = _db.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
-            if (user != null)
-            {
-                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
-                {
-                    _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
-                }
-                await _userManager.AddToRoleAsync(user, roleName);
-                return true;
-            }
-            return false;
-        }
 
-        public async Task<ResponseDTO> ChangeUserRole(string UserId, string NewRole)
-        {
-            var obj = _db.UserRoles.Find(UserId, NewRole);
-            if(obj != null && !obj.UserId.Equals(UserId))
-            {
-                obj.RoleId = NewRole;
-                _db.UserRoles.Update(obj);
-                _db.SaveChanges();
-            }
-            return new ResponseDTO() { IsSucceed = true, Message = "Changed completed" };
-        }
 
         public async Task<ResponseDTO> LoginAsync(LoginDTO loginDTO)
         {

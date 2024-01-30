@@ -1634,25 +1634,6 @@
             "rid": "win"
           }
         }
-      },
-      "TimeshareManagement.Utility/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "AutoMapper": "12.0.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.10",
-          "Microsoft.AspNetCore.Identity": "2.2.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
-          "Microsoft.EntityFrameworkCore": "7.0.10",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10"
-        },
-        "compile": {
-          "bin/placeholder/TimeshareManagement.Utility.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TimeshareManagement.Utility.dll": {}
-        }
       }
     }
   },
@@ -4410,11 +4391,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "TimeshareManagement.Utility/1.0.0": {
-      "type": "project",
-      "path": "../TimeshareManagement.Utility/TimeshareManagement.Utility.csproj",
-      "msbuildProject": "../TimeshareManagement.Utility/TimeshareManagement.Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4427,8 +4403,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.10",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
-      "TimeshareManagement.Utility >= 1.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.10"
     ]
   },
   "packageFolders": {
@@ -4457,11 +4432,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj": {
-              "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
