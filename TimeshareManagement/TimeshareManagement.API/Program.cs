@@ -75,6 +75,7 @@ builder.Services
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddTransient<ResponseDTO>();
 builder.Services.AddScoped<ITimeshareRepository, TimeshareRepository>();
+builder.Services.AddScoped<IPlaceRepository, PlaceRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
