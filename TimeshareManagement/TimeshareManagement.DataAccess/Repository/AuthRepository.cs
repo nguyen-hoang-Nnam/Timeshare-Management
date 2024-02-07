@@ -58,8 +58,8 @@ namespace TimeshareManagement.DataAccess.Repository
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim("JWTID", Guid.NewGuid().ToString()),
-                new Claim("FirstName", user.FirstName),
-                new Claim("LastName", user.LastName),
+                new Claim("Name", user.Name),
+                /*new Claim("LastName", user.LastName),*/
             };
 
             foreach (var userRole in userRoles)
@@ -152,8 +152,8 @@ namespace TimeshareManagement.DataAccess.Repository
 
             ApplicationUser newUser = new ApplicationUser()
             {
-                FirstName = registerDTO.FirstName,
-                LastName = registerDTO.LastName,
+                Name = registerDTO.Name,
+                /*LastName = registerDTO.LastName,*/
                 Email = registerDTO.Email,
                 UserName = registerDTO.Username,
                 SecurityStamp = Guid.NewGuid().ToString(),
