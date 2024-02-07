@@ -9,11 +9,11 @@ namespace TimeshareManagement.Models.Models.DTO
 {
     public class RegisterDTO
     {
-        [Required(ErrorMessage = "FirstName is required")]
-        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; }
 
-        [Required(ErrorMessage = "LastName is required")]
-        public string LastName { get; set; }
+        /*[Required(ErrorMessage = "LastName is required")]
+        public string LastName { get; set; }*/
 
         [Required(ErrorMessage = "UserName is required")]
         public string Username { get; set; }
@@ -25,5 +25,7 @@ namespace TimeshareManagement.Models.Models.DTO
         public string Password { get; set; }
 
         /*public string? Role { get; set; }*/
+        [Required(ErrorMessage = "PhoneNumber is required")]
+        public string PhoneNumber { get; set; }
     }
 }

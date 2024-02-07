@@ -15,5 +15,6 @@ namespace TimeshareManagement.DataAccess.Repository.IRepository
         Task Create(T entity);
         Task Update(T entity);
         Task DeleteById(int id);
+        Task<T> GetUserById(string id);
     }
 }
