@@ -28,7 +28,7 @@ namespace TimeshareManagement.API.Controllers
         [Route("GetAllRoomAmenities")]
         public async Task<IActionResult> GetAllRoomAmenities()
         {
-            try
+            try  
             {
                 var roomAmenities = await _roomAmenitiesRepository.GetAll();
                 return Ok(new ResponseDTO { Result = roomAmenities, IsSucceed = true, Message = "Room Amenities retrived successfully." });
