@@ -89,6 +89,10 @@ namespace TimeshareManagement.API.Controllers
                     existingTimeshare.timeshareName = timeshare.timeshareName;
                     existingTimeshare.Price = timeshare.Price;
                     existingTimeshare.Address = timeshare.Address;
+                    existingTimeshare.Image = timeshare.Image;
+                    existingTimeshare.placeId = timeshare.placeId;
+                    existingTimeshare.User = timeshare.User;
+                    existingTimeshare.timeshareStatusId = timeshare.timeshareStatusId;
                     //
                     /*existingTimeshare.timeshareStatusId = id;*/
                     await _timeshareRepository.Update(existingTimeshare);

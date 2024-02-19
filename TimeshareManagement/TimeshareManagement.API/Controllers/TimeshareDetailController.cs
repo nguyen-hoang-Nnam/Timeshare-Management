@@ -89,6 +89,8 @@ namespace TimeshareManagement.API.Controllers
                 {
                     existingTimeshareDetail.Image = timeshareDetail.Image;
                     existingTimeshareDetail.Detail = timeshareDetail.Detail;
+                    existingTimeshareDetail.roomID = timeshareDetail.roomID;
+                    existingTimeshareDetail.timeshareId = timeshareDetail.timeshareId;
                    
                     await _timeshareDetailRepository.Update(timeshareDetail);
                 }
