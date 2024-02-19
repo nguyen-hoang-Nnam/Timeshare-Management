@@ -22,6 +22,8 @@ namespace TimeshareManagement.DataAccess.Data
         public DbSet<Place> Places { get; set; }
         public DbSet<TimeshareStatus> TimesharesStatus { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<TimeshareDetail> TimesharesDetail { get; set; }
+        public DbSet<RoomAmenities> RoomAmenities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

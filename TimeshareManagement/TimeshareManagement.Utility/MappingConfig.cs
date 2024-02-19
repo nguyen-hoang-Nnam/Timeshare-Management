@@ -19,6 +19,8 @@ namespace TimeshareManagement.Utility
                 config.CreateMap<Place, PlaceDTO>().ReverseMap();
                 config.CreateMap<TimeshareStatus, TimeshareStatusDTO>().ReverseMap();
                 config.CreateMap<Room, RoomDTO>().ReverseMap();
+                config.CreateMap<TimeshareDetail, TimeshareDetailDTO>().ReverseMap();
+                config.CreateMap<RoomAmenities, RoomAmenitiesDTO>().ReverseMap();
             });
             return mappingConfig;
         }
