@@ -16,8 +16,8 @@ namespace TimeshareManagement.Models.Models
         public string? Image { get; set; }
         public int Price { get; set; }
         public string? Address { get; set; }
-        public DateTime? Checkin { get; set; }
-        public DateTime? Checkout { get; set; }
+        /*public DateTime? Checkin { get; set; }
+        public DateTime? Checkout { get; set; }*/
 
         public int? timeshareStatusId { get; set; }
         [ForeignKey("timeshareStatusId")]
