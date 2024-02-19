@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeshareManagement.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using TimeshareManagement.DataAccess.Data;
 namespace TimeshareManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240219021700_timeshare-detail")]
+    partial class timesharedetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,23 +269,6 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.HasKey("roomID");
 
                     b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("TimeshareManagement.Models.Models.RoomAmenities", b =>
-                {
-                    b.Property<int>("roomAmenitiesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("roomAmenitiesId"));
-
-                    b.Property<string>("roomAmenitiesName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("roomAmenitiesId");
-
-                    b.ToTable("RoomAmenities");
                 });
 
             modelBuilder.Entity("TimeshareManagement.Models.Models.Timeshare", b =>
