@@ -221,6 +221,32 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TimeshareManagement.Models.Models.BookingRequest", b =>
+                {
+                    b.Property<int>("bookingRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("bookingRequestId"));
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("bookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("roomID")
+                        .HasColumnType("int");
+
+                    b.HasKey("bookingRequestId");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("roomID");
+
+                    b.ToTable("BookingRequests");
+                });
+
             modelBuilder.Entity("TimeshareManagement.Models.Models.Place", b =>
                 {
                     b.Property<int>("placeId")
@@ -448,6 +474,21 @@ namespace TimeshareManagement.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TimeshareManagement.Models.Models.BookingRequest", b =>
+                {
+                    b.HasOne("TimeshareManagement.Models.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("Id");
+
+                    b.HasOne("TimeshareManagement.Models.Models.Room", "room")
+                        .WithMany()
+                        .HasForeignKey("roomID");
+
+                    b.Navigation("User");
+
+                    b.Navigation("room");
                 });
 
             modelBuilder.Entity("TimeshareManagement.Models.Models.RoomDetail", b =>

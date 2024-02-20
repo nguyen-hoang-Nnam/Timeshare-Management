@@ -9,5 +9,6 @@ namespace TimeshareManagement.DataAccess.Repository.IRepository
 {
     public interface IRoomRepository : IRepository<Room>
     {
+        /*Task<IEnumerable<Room>> GetRoomAsync(int page, int pageSize, string searchTerm);*/
     }
 }
