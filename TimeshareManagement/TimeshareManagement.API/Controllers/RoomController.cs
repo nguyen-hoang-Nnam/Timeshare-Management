@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 using TimeshareManagement.DataAccess.Data;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
@@ -113,6 +114,28 @@ namespace TimeshareManagement.API.Controllers
                 return Ok(new ResponseDTO { Result = null, IsSucceed = true, Message = "Delete Room successfully" });
             }
             catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseDTO { Result = null, IsSucceed = false, Message = $"Error: {ex.Message}" });
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetRoom(int page, int pageSize, decimal? searchPrice)
+        {
+            try
+            {
+                Expression<Func<Room, bool>> filter = null;
+
+                /*if (!string.IsNullOrEmpty(searchName))
+                {
+                    filter = entity => entity.Name.Contains(searchName);
+                }*/
+                if (searchPrice.HasValue)
+                {
+                    filter = entity => entity.Price == searchPrice.Value;
+                }
+                var item = await _roomRepository.GetPagedAsync(page, pageSize, filter);
+                return Ok(new ResponseDTO { Result = item, IsSucceed = true, Message = "Paging Room successfully" });
+            } catch (Exception ex)
             {
                 return StatusCode(500, new ResponseDTO { Result = null, IsSucceed = false, Message = $"Error: {ex.Message}" });
             }

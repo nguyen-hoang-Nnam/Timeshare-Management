@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TimeshareManagement.DataAccess.Data;
@@ -62,6 +63,22 @@ namespace TimeshareManagement.DataAccess.Repository
         public async Task<T> GetUserById(string id)
         {
             return await _dbSet.FindAsync(id);
+        }
+        public async Task<IEnumerable<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, bool>> filter = null)
+        {
+            var query = _db.Set<T>().AsQueryable();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            var entities = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return entities;
         }
     }
 }

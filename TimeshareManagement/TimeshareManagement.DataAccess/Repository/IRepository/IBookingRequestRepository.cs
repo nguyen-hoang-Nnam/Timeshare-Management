@@ -7,7 +7,7 @@ using TimeshareManagement.Models.Models;
 
 namespace TimeshareManagement.DataAccess.Repository.IRepository
 {
-    public interface IBookingRequest : IRepository<BookingRequest>
+    public interface IBookingRequestRepository : IRepository<BookingRequest>
     {
     }
 }

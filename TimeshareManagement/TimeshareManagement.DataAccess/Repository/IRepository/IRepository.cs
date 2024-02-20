@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TimeshareManagement.Models.Models.DTO;
@@ -16,5 +17,6 @@ namespace TimeshareManagement.DataAccess.Repository.IRepository
         Task Update(T entity);
         Task DeleteById(int id);
         Task<T> GetUserById(string id);
+        Task<IEnumerable<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, bool>> filter = null);
     }
 }
