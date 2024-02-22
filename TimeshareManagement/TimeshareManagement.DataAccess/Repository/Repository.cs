@@ -80,5 +80,11 @@ namespace TimeshareManagement.DataAccess.Repository
 
             return entities;
         }
+        public async Task DeleteById(string id)
+        {
+            var entity = await _dbSet.FindAsync(id);
+            _dbSet.Remove(entity);
+            await _db.SaveChangesAsync();
+        }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeshareManagement.DataAccess.Data;
 using TimeshareManagement.DataAccess.Migrations;
+using TimeshareManagement.DataAccess.Repository;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
 using TimeshareManagement.Models.Models.DTO;
@@ -88,6 +89,20 @@ namespace TimeshareManagement.API.Controllers
                 }
 
                 return Ok(new ResponseDTO { Result = user, IsSucceed = true, Message = "Update User successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseDTO { Result = null, IsSucceed = false, Message = $"Error: {ex.Message}" });
+            }
+        }
+        [HttpDelete]
+        [Route("DeleteUser/{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            try
+            {
+                await _userRepository.DeleteById(id);
+                return Ok(new ResponseDTO { Result = null, IsSucceed = true, Message = "Delete User successfully" });
             }
             catch (Exception ex)
             {
