@@ -9,10 +9,10 @@ namespace TimeshareManagement.Models.Models.DTO
 {
     public class LoginDTO
     {
-        [Required(ErrorMessage = "UserName is required")]
+        //[Required(ErrorMessage = "UserName is required")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
+        //[Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
     }
 }

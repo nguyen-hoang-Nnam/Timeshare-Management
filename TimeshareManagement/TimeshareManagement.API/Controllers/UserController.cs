@@ -66,7 +66,7 @@ namespace TimeshareManagement.API.Controllers
         
         [HttpPut]
         [Route("UpdateUser/{id}")]
-        public async Task<IActionResult> UpdateTimeshare(string id, [FromBody] UserDTO user)
+        public async Task<IActionResult> UpdateUser(string id, [FromBody] UserDTO user)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace TimeshareManagement.API.Controllers
                     existinguser.PhoneNumber = user.PhoneNumber;
                     existinguser.Name = user.Name;
                     existinguser.NormalizedEmail = user.Email.ToUpper();
-                    
+
 
                     // Save changes using the generic repository
                     await _userRepository.Update(existinguser);
