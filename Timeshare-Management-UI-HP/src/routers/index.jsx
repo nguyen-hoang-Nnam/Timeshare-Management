@@ -7,7 +7,9 @@ const routers = [
   { path: "/", components: HomePage },
   { path: "/login", components: Login },
   { path: "/register", components: Register },
+
   { path: "/view-profile", components: ViewProfile },
+
 ];
 
 export { routers };
