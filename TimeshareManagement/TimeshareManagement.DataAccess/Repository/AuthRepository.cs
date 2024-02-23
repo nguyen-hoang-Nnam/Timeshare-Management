@@ -37,7 +37,7 @@ namespace TimeshareManagement.DataAccess.Repository
 
         public async Task<ResponseDTO> LoginAsync(LoginDTO loginDTO)
         {
-            var user = await _userManager.FindByNameAsync(loginDTO.Username);
+            /*var user = await _userManager.FindByNameAsync(loginDTO.Username);
 
             if (user is null)
             {
@@ -49,6 +49,40 @@ namespace TimeshareManagement.DataAccess.Repository
             if (!isPasswordCorrect)
             {
                 return new ResponseDTO() { IsSucceed = true, Message = "Invalid Credential" };
+            }*/
+
+            ApplicationUser user = null;
+
+            // Check if loginDTO is an email address
+            if (loginDTO.Username.Contains('@'))
+            {
+                // If it is, try to find user by email
+                user = await _userManager.FindByEmailAsync(loginDTO.Username);
+
+                if (user is null)
+                {
+                    return new ResponseDTO() { IsSucceed = false, Message = "Invalid Credential" };
+                }
+
+                // Allow login without password if email is found
+            }
+            else
+            {
+                // If it's not an email, try to find user by username
+                user = await _userManager.FindByNameAsync(loginDTO.Username);
+
+                if (user is null)
+                {
+                    return new ResponseDTO() { IsSucceed = false, Message = "Invalid Credential" };
+                }
+
+                // Check password only if the login is done with a username
+                var isPasswordCorrect = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
+
+                if (!isPasswordCorrect)
+                {
+                    return new ResponseDTO() { IsSucceed = false, Message = "Invalid Credential" };
+                }
             }
 
             var userRoles = await _userManager.GetRolesAsync(user);

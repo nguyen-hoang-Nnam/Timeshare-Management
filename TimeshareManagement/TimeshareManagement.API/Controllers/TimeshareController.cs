@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.IO;
 using System.Linq.Expressions;
 using TimeshareManagement.DataAccess.Data;
@@ -8,6 +10,7 @@ using TimeshareManagement.DataAccess.Repository;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
 using TimeshareManagement.Models.Models.DTO;
+using TimeshareManagement.Models.Role;
 
 namespace TimeshareManagement.API.Controllers
 {
@@ -64,6 +67,7 @@ namespace TimeshareManagement.API.Controllers
         }
         [HttpPost]
         [Route("CreateTimeshare")]
+        [Authorize(Roles = StaticUserRoles.ADMIN)]
         public async Task<IActionResult> CreateTimeshare([FromBody] Timeshare timeshare)
         {
             try
@@ -78,6 +82,7 @@ namespace TimeshareManagement.API.Controllers
         }
         [HttpPut]
         [Route("UpdateTimeshare/{id:int}")]
+        [Authorize(Roles = StaticUserRoles.ADMIN)]
         public async Task<IActionResult> UpdateTimeshare(int id, [FromBody] Timeshare timeshare)
         {
             try
@@ -108,6 +113,7 @@ namespace TimeshareManagement.API.Controllers
         }
         [HttpDelete]
         [Route("DeleteTimeshare/{id:int}")]
+        [Authorize(Roles = StaticUserRoles.ADMIN)]
         public async Task<IActionResult> DeleteTimeshare(int id)
         {
             try
