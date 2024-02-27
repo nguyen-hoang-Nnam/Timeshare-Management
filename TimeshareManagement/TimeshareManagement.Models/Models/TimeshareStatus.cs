@@ -11,6 +11,6 @@ namespace TimeshareManagement.Models.Models
     {
         [Key]
         public int timeshareStatusId { get; set; }
-        public bool? IsActive { get; set; }
+        public string? timeshareStatusName { get; set; }
     }
 }

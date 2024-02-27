@@ -14,9 +14,7 @@ namespace TimeshareManagement.Models.Models
         public int timeshareDetailId { get; set; }
         public string? Image { get; set; }
         public string? Detail { get; set; }
-        public int? roomID { get; set; }
-        [ForeignKey("roomID")]
-        public Room? Room { get; set; }
+        
         public int? timeshareId { get; set; }
         [ForeignKey("timeshareId")]
         public Timeshare? Timeshare { get; set; }

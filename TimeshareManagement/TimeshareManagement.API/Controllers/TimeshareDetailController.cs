@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeshareManagement.DataAccess.Data;
+using TimeshareManagement.DataAccess.Migrations;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
 using TimeshareManagement.Models.Models.DTO;
@@ -16,13 +17,19 @@ namespace TimeshareManagement.API.Controllers
         private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
         private readonly ITimeshareDetailRepository _timeshareDetailRepository;
+        private readonly ITimeshareRepository _timeshareRepository;
+        private readonly IPlaceRepository _placeRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TimeshareDetailController(IConfiguration configuration, ApplicationDbContext db, IMapper mapper, ITimeshareDetailRepository timeshareDetailRepository)
+        public TimeshareDetailController(IConfiguration configuration, ApplicationDbContext db, IMapper mapper, ITimeshareDetailRepository timeshareDetailRepository, ITimeshareRepository timeshareRepository, IPlaceRepository placeRepository, IUserRepository userRepository)
         {
             _configuration = configuration;
             _db = db;
             _mapper = mapper;
             _timeshareDetailRepository = timeshareDetailRepository;
+            _timeshareRepository = timeshareRepository;
+            _placeRepository = placeRepository;
+            _userRepository = userRepository;
         }
         [HttpGet]
         [Route("GetAllTimeshareDetail")]
@@ -66,6 +73,21 @@ namespace TimeshareManagement.API.Controllers
         {
             try
             {
+                if (timeshareDetail == null)
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare Detail object is null." });
+                }
+
+                IEnumerable<Timeshare> timeshares = _timeshareRepository.GetAllItem();
+                if (timeshareDetail.Timeshare != null)
+                {
+                    timeshareDetail.Timeshare = timeshares.FirstOrDefault(ts => ts.timeshareName == timeshareDetail.Timeshare.timeshareName);
+                }
+                else
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare Detail object is null." });
+                }
+
                 await _timeshareDetailRepository.Create(timeshareDetail);
                 return Ok(new ResponseDTO { Result = timeshareDetail, IsSucceed = true, Message = "Create Timeshare Detail successfully" });
             }
@@ -89,7 +111,6 @@ namespace TimeshareManagement.API.Controllers
                 {
                     existingTimeshareDetail.Image = timeshareDetail.Image;
                     existingTimeshareDetail.Detail = timeshareDetail.Detail;
-                    existingTimeshareDetail.roomID = timeshareDetail.roomID;
                     existingTimeshareDetail.timeshareId = timeshareDetail.timeshareId;
                    
                     await _timeshareDetailRepository.Update(timeshareDetail);

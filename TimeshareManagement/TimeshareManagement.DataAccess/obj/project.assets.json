@@ -4463,11 +4463,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.DataAccess\\TimeshareManagement.DataAccess.csproj",
+      "projectUniqueName": "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.DataAccess\\TimeshareManagement.DataAccess.csproj",
       "projectName": "TimeshareManagement.DataAccess",
-      "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.DataAccess\\TimeshareManagement.DataAccess.csproj",
+      "projectPath": "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.DataAccess\\TimeshareManagement.DataAccess.csproj",
       "packagesPath": "C:\\Users\\Hoang Nam\\.nuget\\packages\\",
-      "outputPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.DataAccess\\obj\\",
+      "outputPath": "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hoang Nam\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4484,11 +4484,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj": {
-              "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj"
+            "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj": {
+              "projectPath": "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj"
             },
-            "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj": {
-              "projectPath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj"
+            "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj": {
+              "projectPath": "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.Utility\\TimeshareManagement.Utility.csproj"
             }
           }
         }
@@ -4497,6 +4497,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4560,7 +4565,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

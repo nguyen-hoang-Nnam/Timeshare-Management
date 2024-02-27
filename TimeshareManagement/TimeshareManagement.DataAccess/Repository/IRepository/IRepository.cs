@@ -19,5 +19,6 @@ namespace TimeshareManagement.DataAccess.Repository.IRepository
         Task<T> GetUserById(string id);
         Task<IEnumerable<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, bool>> filter = null);
         Task DeleteById(string id);
+        IEnumerable<T> GetAllItem();
     }
 }

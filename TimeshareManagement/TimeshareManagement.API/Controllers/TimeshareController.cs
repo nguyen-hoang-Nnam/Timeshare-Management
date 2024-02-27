@@ -22,13 +22,17 @@ namespace TimeshareManagement.API.Controllers
         private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
         private readonly ITimeshareRepository _timeshareRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IPlaceRepository _placeRepository;
 
-        public TimeshareController(IConfiguration configuration, ApplicationDbContext db, IMapper mapper, ITimeshareRepository timeshareRepository)
+        public TimeshareController(IConfiguration configuration, ApplicationDbContext db, IMapper mapper, ITimeshareRepository timeshareRepository, IUserRepository userRepository, IPlaceRepository placeRepository)
         {
             _configuration = configuration;
             _db = db;
             _mapper = mapper;
             _timeshareRepository = timeshareRepository;
+            _userRepository = userRepository;
+            _placeRepository = placeRepository;
         }
         [HttpGet]
         [Route("GetAllTimeshare")]
@@ -67,11 +71,40 @@ namespace TimeshareManagement.API.Controllers
         }
         [HttpPost]
         [Route("CreateTimeshare")]
-        [Authorize(Roles = StaticUserRoles.ADMIN)]
+        /*[Authorize(Roles = StaticUserRoles.ADMIN)]*/
         public async Task<IActionResult> CreateTimeshare([FromBody] Timeshare timeshare)
         {
             try
             {
+                if (timeshare == null)
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare object is null." });
+                }
+
+                IEnumerable<ApplicationUser> users = _userRepository.GetAllItem();
+                if (timeshare.User != null)
+                {
+                    timeshare.User = users.FirstOrDefault(u => u.UserName == timeshare.User.UserName);
+                } else
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare object is null." });
+                }
+
+                IEnumerable<Place> places = _placeRepository.GetAllItem();
+                if (timeshare.Place != null)
+                {
+                    timeshare.Place = places.FirstOrDefault(p => p.placeName == timeshare.Place.placeName);
+                } else
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare object is null." });
+                }
+
+                // Ensure that timeshare.User and timeshare.Place are not null before proceeding
+                /*if (timeshare.User == null || timeshare.Place == null)
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "User or Place not found." });
+                }*/
+                
                 await _timeshareRepository.Create(timeshare);
                 return Ok(new ResponseDTO { Result = timeshare, IsSucceed = true, Message = "Create Timeshare successfully" });
             }
@@ -98,7 +131,7 @@ namespace TimeshareManagement.API.Controllers
                     existingTimeshare.Address = timeshare.Address;
                     existingTimeshare.Image = timeshare.Image;
                     existingTimeshare.placeId = timeshare.placeId;
-                    existingTimeshare.User = timeshare.User;
+                    existingTimeshare.Id = timeshare.Id;
                     existingTimeshare.timeshareStatusId = timeshare.timeshareStatusId;
                     //
                     /*existingTimeshare.timeshareStatusId = id;*/

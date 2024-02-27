@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using TimeshareManagement.DataAccess.Migrations;
 using TimeshareManagement.Models.Models;
 
 namespace TimeshareManagement.DataAccess.Data
@@ -34,6 +35,7 @@ namespace TimeshareManagement.DataAccess.Data
             {
                 b.HasKey(x => x.UserId); // Make sure to specify the primary key
             });
+            /*modelBuilder.Entity<Timeshare>().HasOne(u => u.User).WithMany(t => t.timeshares).HasForeignKey(u => u.Id);*/
         }
     }
 }
