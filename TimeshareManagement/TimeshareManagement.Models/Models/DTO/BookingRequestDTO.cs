@@ -11,7 +11,7 @@ namespace TimeshareManagement.Models.Models.DTO
     {
         public int bookingRequestId { get; set; }
         public DateTime? bookingDate { get; set; }
-        public Room? room { get; set; }
-        public ApplicationUser? User { get; set; }
+        public RoomDTO? room { get; set; }
+        public UserDTO? User { get; set; }
     }
 }

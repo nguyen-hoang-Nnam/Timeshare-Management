@@ -10,5 +10,7 @@ namespace TimeshareManagement.Models.Models.DTO
     {
         public int roomAmenitiesId { get; set; }
         public string roomAmenitiesName { get; set; }
+        public RoomDetailDTO? RoomDetail { get; set; }
+
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w/MHCnCFXAQ5m9UaP9wUS0EcbndvsTIMTsbBLM9ZV87mffC+6Sk3tsMXjF45/Sh+66Yz0U25VZ6GfnW2Etj/ug==",
+  "dgSpecHash": "1WpdtCIscM2KPiIqUZaON33ZyLyMA6yXOO06sXkx93LRl4J5A8CZA457U+2meBuxoBHjI/OICft/K7y2OJ08JQ==",
   "success": true,
-  "projectFilePath": "D:\\TimeshareManagement\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj",
+  "projectFilePath": "D:\\Timeshare-Management\\Timeshare-Management\\TimeshareManagement\\TimeshareManagement.Models\\TimeshareManagement.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hoang Nam\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Hoang Nam\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

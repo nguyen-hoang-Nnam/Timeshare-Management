@@ -9,6 +9,6 @@ namespace TimeshareManagement.Models.Models.DTO
     public class TimeshareStatusDTO
     {
         public int timeshareStatusId { get; set; }
-        public bool? IsActive { get; set; }
+        public string? timeshareStatusName { get; set; }
     }
 }

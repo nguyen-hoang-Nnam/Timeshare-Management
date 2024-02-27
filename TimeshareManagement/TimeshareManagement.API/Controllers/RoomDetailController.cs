@@ -92,7 +92,6 @@ namespace TimeshareManagement.API.Controllers
                     existingRoomDetail.image = roomDetail.image;
                     //
                     existingRoomDetail.roomDetailId = roomDetail.roomDetailId;
-                    existingRoomDetail.roomAmenitiesId = roomDetail.roomAmenitiesId;
                     //
                     await _roomDetailRepository.Update(existingRoomDetail);
                 }

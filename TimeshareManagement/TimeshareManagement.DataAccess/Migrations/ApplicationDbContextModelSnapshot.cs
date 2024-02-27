@@ -289,7 +289,12 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.Property<int>("Sleeps")
                         .HasColumnType("int");
 
+                    b.Property<int?>("timeshareDetailId")
+                        .HasColumnType("int");
+
                     b.HasKey("roomID");
+
+                    b.HasIndex("timeshareDetailId");
 
                     b.ToTable("Rooms");
                 });
@@ -306,7 +311,12 @@ namespace TimeshareManagement.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("roomDetailId")
+                        .HasColumnType("int");
+
                     b.HasKey("roomAmenitiesId");
+
+                    b.HasIndex("roomDetailId");
 
                     b.ToTable("RoomAmenities");
                 });
@@ -325,15 +335,10 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.Property<string>("image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("roomAmenitiesId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("roomID")
                         .HasColumnType("int");
 
                     b.HasKey("roomDetailId");
-
-                    b.HasIndex("roomAmenitiesId");
 
                     b.HasIndex("roomID");
 
@@ -394,15 +399,10 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("roomID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("timeshareId")
                         .HasColumnType("int");
 
                     b.HasKey("timeshareDetailId");
-
-                    b.HasIndex("roomID");
 
                     b.HasIndex("timeshareId");
 
@@ -417,8 +417,8 @@ namespace TimeshareManagement.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("timeshareStatusId"));
 
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
+                    b.Property<string>("timeshareStatusName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("timeshareStatusId");
 
@@ -491,19 +491,31 @@ namespace TimeshareManagement.DataAccess.Migrations
                     b.Navigation("room");
                 });
 
+            modelBuilder.Entity("TimeshareManagement.Models.Models.Room", b =>
+                {
+                    b.HasOne("TimeshareManagement.Models.Models.TimeshareDetail", "timeshareDetail")
+                        .WithMany()
+                        .HasForeignKey("timeshareDetailId");
+
+                    b.Navigation("timeshareDetail");
+                });
+
+            modelBuilder.Entity("TimeshareManagement.Models.Models.RoomAmenities", b =>
+                {
+                    b.HasOne("TimeshareManagement.Models.Models.RoomDetail", "RoomDetail")
+                        .WithMany()
+                        .HasForeignKey("roomDetailId");
+
+                    b.Navigation("RoomDetail");
+                });
+
             modelBuilder.Entity("TimeshareManagement.Models.Models.RoomDetail", b =>
                 {
-                    b.HasOne("TimeshareManagement.Models.Models.RoomAmenities", "RoomAmenities")
-                        .WithMany()
-                        .HasForeignKey("roomAmenitiesId");
-
                     b.HasOne("TimeshareManagement.Models.Models.Room", "Room")
                         .WithMany()
                         .HasForeignKey("roomID");
 
                     b.Navigation("Room");
-
-                    b.Navigation("RoomAmenities");
                 });
 
             modelBuilder.Entity("TimeshareManagement.Models.Models.Timeshare", b =>
@@ -529,15 +541,9 @@ namespace TimeshareManagement.DataAccess.Migrations
 
             modelBuilder.Entity("TimeshareManagement.Models.Models.TimeshareDetail", b =>
                 {
-                    b.HasOne("TimeshareManagement.Models.Models.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("roomID");
-
                     b.HasOne("TimeshareManagement.Models.Models.Timeshare", "Timeshare")
                         .WithMany()
                         .HasForeignKey("timeshareId");
-
-                    b.Navigation("Room");
 
                     b.Navigation("Timeshare");
                 });
