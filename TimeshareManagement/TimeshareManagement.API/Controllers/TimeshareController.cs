@@ -131,7 +131,7 @@ namespace TimeshareManagement.API.Controllers
                     existingTimeshare.Address = timeshare.Address;
                     existingTimeshare.Image = timeshare.Image;
                     existingTimeshare.placeId = timeshare.placeId;
-                    existingTimeshare.User.UserName = timeshare.User.UserName;
+                    existingTimeshare.Id = timeshare.Id;
                     existingTimeshare.timeshareStatusId = timeshare.timeshareStatusId;
                     //
                     /*existingTimeshare.timeshareStatusId = id;*/

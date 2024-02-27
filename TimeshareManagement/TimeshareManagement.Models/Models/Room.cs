@@ -18,8 +18,8 @@ namespace TimeshareManagement.Models.Models
         public int Price { get; set; }
         public int Rooms { get; set; }
         public int Sleeps { get; set; }
-        public int? timeshareDetailId { get; set; }
-        [ForeignKey("timeshareDetailId")]
-        public TimeshareDetail? timeshareDetail { get; set; }
+        public int? timeshareId { get; set; }
+        [ForeignKey("timeshareId")]
+        public Timeshare? Timeshare { get; set; }
     }
 }

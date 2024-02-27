@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 using TimeshareManagement.DataAccess.Data;
+using TimeshareManagement.DataAccess.Migrations;
 using TimeshareManagement.DataAccess.Repository;
 using TimeshareManagement.DataAccess.Repository.IRepository;
 using TimeshareManagement.Models.Models;
@@ -18,13 +19,15 @@ namespace TimeshareManagement.API.Controllers
         private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
         private readonly IRoomAmenitiesRepository _roomAmenitiesRepository;
+        private readonly IRoomDetailRepository _roomDetailRepository;
 
-        public RoomAmenitiesController(IConfiguration configuration, ApplicationDbContext db, IMapper mapper, IRoomAmenitiesRepository roomAmenitiesRepository)
+        public RoomAmenitiesController(IConfiguration configuration, ApplicationDbContext db, IMapper mapper, IRoomAmenitiesRepository roomAmenitiesRepository, IRoomDetailRepository roomDetailRepository)
         {
             _configuration = configuration;
             _db = db;
             _mapper = mapper;
             _roomAmenitiesRepository = roomAmenitiesRepository;
+            _roomDetailRepository = roomDetailRepository;
         }
         [HttpGet]
         [Route("GetAllRoomAmenities")]
@@ -68,6 +71,20 @@ namespace TimeshareManagement.API.Controllers
         {
             try
             {
+                if (roomAmenities == null)
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare Detail object is null." });
+                }
+
+                IEnumerable<RoomDetail> roomDetails = _roomDetailRepository.GetAllItem();
+                if (roomAmenities.RoomDetail != null)
+                {
+                    roomAmenities.RoomDetail = roomDetails.FirstOrDefault(rd => rd.roomDetailId == roomAmenities.RoomDetail.roomDetailId);
+                }
+                else
+                {
+                    return BadRequest(new ResponseDTO { Result = null, IsSucceed = false, Message = "Timeshare Detail object is null." });
+                }
                 await _roomAmenitiesRepository.Create(roomAmenities);
                 return Ok(new ResponseDTO { Result = roomAmenities, IsSucceed = true, Message = "Create Room Amenities successfully" });
             }
@@ -90,6 +107,7 @@ namespace TimeshareManagement.API.Controllers
                 else
                 {
                     existingRoomAmenities.roomAmenitiesName = roomAmenities.roomAmenitiesName;
+                    existingRoomAmenities.roomDetailId = roomAmenities.roomDetailId;
 
                     await _roomAmenitiesRepository.Update(existingRoomAmenities);
                 }
