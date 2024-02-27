@@ -23,7 +23,7 @@ namespace TimeshareManagement.DataAccess.Repository
         {
             _db = db;
             _response = new ResponseDTO();
-            _dbSet = db.Set<T>();
+            this._dbSet = db.Set<T>();
             _mapper = mapper;
         }
 
@@ -44,7 +44,7 @@ namespace TimeshareManagement.DataAccess.Repository
 
         public async Task Create(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            await _db.Set<T>().AddAsync(entity);
             await _db.SaveChangesAsync();
         }
 
@@ -85,6 +85,11 @@ namespace TimeshareManagement.DataAccess.Repository
             var entity = await _dbSet.FindAsync(id);
             _dbSet.Remove(entity);
             await _db.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAllItem()
+        {
+            return _db.Set<T>().ToList();
         }
     }
 }

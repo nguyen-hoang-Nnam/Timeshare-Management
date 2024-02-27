@@ -94,6 +94,7 @@ namespace TimeshareManagement.API.Controllers
                     existingRoom.Price = room.Price;
                     existingRoom.Rooms = room.Rooms;
                     existingRoom.Sleeps = room.Sleeps;
+                    existingRoom.timeshareDetailId = room.timeshareDetailId;
                     
                     await _roomRepository.Update(existingRoom);
                 }

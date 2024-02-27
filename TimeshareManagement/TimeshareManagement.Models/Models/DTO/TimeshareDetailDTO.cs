@@ -12,7 +12,7 @@ namespace TimeshareManagement.Models.Models.DTO
         public int timeshareDetailId { get; set; }
         public string? Image { get; set; }
         public string? Detail { get; set; }
-        public Room? Room { get; set; }
-        public Timeshare? Timeshare { get; set; }
+        
+        public TimeshareDTO? Timeshare { get; set; }
     }
 }

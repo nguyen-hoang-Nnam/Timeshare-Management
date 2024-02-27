@@ -15,5 +15,6 @@ namespace TimeshareManagement.Models.Models.DTO
         public int Price { get; set; }
         public int Rooms { get; set; }
         public int Sleeps { get; set; }
+        public TimeshareDetailDTO? TimeshareDetail { get; set; }
     }
 }
